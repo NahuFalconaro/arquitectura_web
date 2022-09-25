@@ -15,7 +15,7 @@ import cliente.Clientes;
 public class Factura {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idFactura;
 	@ManyToOne
 	@JoinColumn(name="idcliente")
@@ -26,7 +26,6 @@ public class Factura {
 	}
 	public Factura(int idFactura, Clientes idCliente) {
 		super();
-		this.idFactura = idFactura;
 		this.idcliente = idCliente;
 	}
 	public int getIdFactura() {

@@ -15,9 +15,9 @@
 
 			<!-- Propiedades de configuracion de JDBC para POstgre /-->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:3306/entregable_1"/>
-			<property name="javax.persistence.jdbc.user" value="nahuelfalconaro" />
-			<property name="javax.persistence.jdbc.password" value="4174"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:49157/entregable_1"/>
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgrespw"/>
 			
 			<!-- Propiedad para la generacion automatica del esquema de base de datos -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />

@@ -10,16 +10,15 @@ import javax.persistence.Id;
 public class Producto {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idProducto;
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="valor")
 	private Float valor;
 	
-	public Producto(int idProducto, String nombre, Float valor) {
+	public Producto(String nombre, Float valor) {
 		super();
-		this.idProducto = idProducto;
 		this.nombre = nombre;
 		this.valor = valor;
 	}

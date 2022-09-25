@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Clientes {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idcliente;
 	@Column(name="name")
 	private String nombre;

@@ -34,12 +34,7 @@ public class ClientDao implements Dao<Clientes>{
 
 	@Override
 	public void save(Clientes t) {
-		// TODO Auto-generated method stub
-		System.out.println(t.toString());
-		em.getEm().getTransaction().begin();
 		em.getEm().persist(t);
-		em.getEm().getTransaction().commit();
-
 	}
 
 	@Override

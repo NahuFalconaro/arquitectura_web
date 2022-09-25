@@ -1,4 +1,4 @@
-package factura;
+package producto;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,47 +10,43 @@ import cliente.Clientes;
 import creator.Dao;
 import creator.SingletonEM;
 
-public class FacturaDao implements Dao<Factura>{
+
+public class ProductoDao implements Dao<Producto>{
 	
 	SingletonEM em =SingletonEM.getInstance();
-	
-	public Factura get(int id) {
+
+	public Producto get(int id) {
 		// TODO Auto-generated method stub
-		Factura f = em.getEm().find(Factura.class, id);
+		Producto f = em.getEm().find(Producto.class, id);
 		return f;
 	}
 
 	@Override
-	public List<Factura> getAll() {
+	public List<Producto> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(Factura t) {
+	public void save(Producto t) {
 		em.getEm().persist(t);
 	}
 
 	@Override
-	public void update(Factura t, String[] params) {
+	public void update(Producto t, String[] params) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Factura t) {
+	public void delete(Producto t) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void saveParseFromRow(CSVRecord csv) {
-		// TODO Auto-generated method stub
-		ClientDao c = new ClientDao();
-//		System.out.println(c.get(3));
-		Clientes c1 = c.get(Integer.parseInt(csv.get("idCliente")));
-		System.out.println(c1);
-		Factura f1 = new Factura(Integer.parseInt(csv.get("idFactura")), c1);
+		Producto f1 = new Producto(csv.get("nombre"), Float.parseFloat(csv.get("valor")));
 		this.save(f1);
 	}
 
