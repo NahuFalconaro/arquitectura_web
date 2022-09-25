@@ -6,10 +6,10 @@
 	<persistence-unit name="entregable_1">		
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
-		<class>entregable_1.Cliente</class>
-		<class>entregable_1.Factura</class>
-		<class>entregable_1.Producto</class>
-		<class>entregable_1.FacturaProducto</class>
+		<class>entregable_1.clientes</class>
+		<class>entregable_1.factura</class>
+		<class>entregable_1.producto</class>
+		<class>entregable_1.facturaProducto</class>
 		
 		<properties>
 

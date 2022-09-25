@@ -7,34 +7,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Clientes {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idCliente;
+	private int idcliente;
 	@Column(name="name")
 	private String nombre;
 	@Column(name="email")
 	private String email;
 	
 	
-	public Cliente() {
+	public Clientes() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Cliente(int idCliente, String nombre, String email) {
+	public Clientes(String nombre, String email) {
 		super();
-		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.email = email;
 	}
 
 	public int getIdCliente() {
-		return idCliente;
+		return idcliente;
 	}
 	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+		this.idcliente = idCliente;
 	}
 	public String getNombre() {
 		return nombre;
@@ -47,6 +46,11 @@ public class Cliente {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idcliente + ", nombre=" + nombre + ", email=" + email + "]";
 	} 
 
 }

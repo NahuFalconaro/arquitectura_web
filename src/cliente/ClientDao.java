@@ -13,55 +13,50 @@ import org.apache.commons.csv.CSVRecord;
 import creator.Dao;
 import creator.SingletonEM;
 
-public class ClientDao implements Dao<Cliente>{
+public class ClientDao implements Dao<Clientes>{
 	
-	SingletonEM em = SingletonEM.getInstance();
+	SingletonEM em =SingletonEM.getInstance();
 
 	//conexion a entityManager
 	//en cada metodo hacemos, em.persist()?
 	@Override
-	public Optional<Cliente> get(long id) {
+	public Clientes get(int id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		Clientes c = em.getEm().find(Clientes.class, id);
+		return c;
 	}
 
 	@Override
-	public List<Cliente> getAll() {
+	public List<Clientes> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
-	public void save(Cliente t) {
+	public void save(Clientes t) {
 		// TODO Auto-generated method stub
-		CSVParser parser;
-		try {
-			
-			
-			parser = CSVFormat.DEFAULT.withHeader().parse(in);
-			for(CSVRecord row: parser) {
-				System.out.println(row.get("idCliente"));
-				System.out.println(row.get("nombre"));
-				System.out.println(row.get("email"));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(t.toString());
+		em.getEm().getTransaction().begin();
+		em.getEm().persist(t);
+		em.getEm().getTransaction().commit();
 
 	}
 
 	@Override
-	public void update(Cliente t, String[] params) {
+	public void update(Clientes t, String[] params) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Cliente t) {
+	public void delete(Clientes t) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public void saveParseFromRow(CSVRecord csv) {
+		Clientes c = new Clientes(csv.get("nombre"), csv.get("email"));
+		this.save(c);
+	}
 }

@@ -26,5 +26,9 @@ public class SingletonEM {
 		em.close();
 		emf.close();
 	}
+	public void clearCache() {
+		this.em.flush();
+		this.em.clear();
+	}
 	
 }

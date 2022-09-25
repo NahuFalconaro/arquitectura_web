@@ -1,12 +1,15 @@
 package factura;
 
+import java.util.Optional;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import cliente.Cliente;
+import cliente.Clientes;
 
 @Entity
 public class Factura {
@@ -15,15 +18,16 @@ public class Factura {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idFactura;
 	@ManyToOne
-	private Cliente idCliente;
+	@JoinColumn(name="idcliente")
+	private Clientes idcliente;
 	public Factura() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Factura(int idFactura, Cliente idCliente) {
+	public Factura(int idFactura, Clientes idCliente) {
 		super();
 		this.idFactura = idFactura;
-		this.idCliente = idCliente;
+		this.idcliente = idCliente;
 	}
 	public int getIdFactura() {
 		return idFactura;
@@ -31,11 +35,11 @@ public class Factura {
 	public void setIdFactura(int idFactura) {
 		this.idFactura = idFactura;
 	}
-	public Cliente getIdCliente() {
-		return idCliente;
+	public Clientes getIdCliente() {
+		return idcliente;
 	}
-	public void setIdCliente(Cliente idCliente) {
-		this.idCliente = idCliente;
+	public void setIdCliente(Clientes idCliente) {
+		this.idcliente = idCliente;
 	}
 	
 }
