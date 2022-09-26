@@ -5,8 +5,7 @@ import java.util.Optional;
 
 import org.apache.commons.csv.CSVRecord;
 
-import cliente.ClientDao;
-import cliente.Clientes;
+
 import creator.Dao;
 import creator.SingletonEM;
 import factura.Factura;
@@ -56,8 +55,20 @@ public class FacturaProductoDao implements Dao<FacturaProducto>{
 		FacturaDao f = new FacturaDao();
 		Factura f1 = f.get(Integer.parseInt(csv.get("idFactura")));
 		
-		FacturaProducto fp = new FacturaProducto(f1,p1,Integer.parseInt(csv.get("idFactura")));
+		FacturaProducto fp = new FacturaProducto(f1,p1,Integer.parseInt(csv.get("cantidad")));
 		this.save(fp);
+	}
+
+	@Override
+	public FacturaProducto getOneByQuery(String q) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FacturaProducto> getAllByQuery(String q) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

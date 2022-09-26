@@ -49,5 +49,13 @@ public class ProductoDao implements Dao<Producto>{
 		Producto f1 = new Producto(csv.get("nombre"), Float.parseFloat(csv.get("valor")));
 		this.save(f1);
 	}
+	@Override
+	public Producto getOneByQuery(String q) {
+		return (Producto) em.getEm().createQuery(q).getResultList().get(0);
+	}
+	@Override
+	public List<Producto> getAllByQuery(String q) {
+		return em.getEm().createQuery(q).getResultList();
+	}
 
 }

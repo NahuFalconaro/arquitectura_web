@@ -13,4 +13,6 @@ public interface Dao<T> {
 	void update(T t, String[] params);
 	void delete(T t);
 	void saveParseFromRow(CSVRecord csv);
+	T getOneByQuery(String q);
+	List<T> getAllByQuery(String q);
 }

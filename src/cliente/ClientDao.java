@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import creator.Dao;
 import creator.SingletonEM;
+import producto.Producto;
 
 public class ClientDao implements Dao<Clientes>{
 	
@@ -54,4 +55,13 @@ public class ClientDao implements Dao<Clientes>{
 		Clientes c = new Clientes(csv.get("nombre"), csv.get("email"));
 		this.save(c);
 	}
+	@Override
+	public Clientes getOneByQuery(String q) {
+		return (Clientes) em.getEm().createQuery(q).getResultList().get(0);
+	}
+	@Override
+	public List<Clientes> getAllByQuery(String q) {
+		return em.getEm().createQuery(q).getResultList();
+	}
+
 }

@@ -1,5 +1,7 @@
 package factura_producto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,13 +13,12 @@ import factura.Factura;
 import producto.Producto;
 
 @Entity
-public class FacturaProducto {
+public class FacturaProducto implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idRelation;
 	@ManyToOne
 	private Factura idFactura;
+	@Id
 	@ManyToOne
 	private Producto idProducto;
 	@Column(name="cantidad")

@@ -2,10 +2,13 @@ package creator;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -40,11 +43,39 @@ public class Creator {
 //		filereaderSave(userDao, "clientes.csv", em);
 //
 //		filereaderSave(facturaDao, "facturas.csv", em);
-
+//
 //		filereaderSave(productoDao, "productos.csv", em);
+//		
+//		filereaderSave(facturaProductoDao, "facturas-productos.csv", em);
 		
-		filereaderSave(facturaProductoDao, "facturas-productos.csv", em);
+		String q = "SELECT p "
+				+ "FROM Producto p "
+				+ "JOIN FacturaProducto fp "
+				+ "ON (p.idProducto = fp.idProducto) "
+				+ "GROUP BY p.idProducto "
+				+ "ORDER BY SUM(cantidad * valor) DESC ";
 		
+			
+		Producto st = productoDao.getOneByQuery(q);
+		
+		System.out.println(st);
+
+		
+		String q2 = "SELECT c "
+				+ "	FROM Clientes c "
+				+ "	JOIN Factura f "
+				+ "		ON (c.idcliente = f.idcliente) "
+				+ "	JOIN FacturaProducto fp"
+				+ "		ON (fp.idFactura = f.idFactura) "
+				+ "	JOIN Producto p "
+				+ "		ON (fp.idProducto = p.idProducto) "
+				+ "	GROUP BY c "
+				+ "	ORDER BY SUM(p.valor * fp.cantidad) DESC ";
+		
+		List<Clientes> st2 = userDao.getAllByQuery(q2);
+		
+		System.out.println(st2);
+			
 		em.getEm().getTransaction().commit();
 		
 		em.closeConnection();

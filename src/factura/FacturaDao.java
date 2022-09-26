@@ -54,4 +54,16 @@ public class FacturaDao implements Dao<Factura>{
 		this.save(f1);
 	}
 
+	@Override
+	public Factura getOneByQuery(String q) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Factura> getAllByQuery(String q) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
