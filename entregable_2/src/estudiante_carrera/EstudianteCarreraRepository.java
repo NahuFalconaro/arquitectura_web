@@ -7,6 +7,7 @@ import estudiante.Estudiante;
 
 public interface EstudianteCarreraRepository {
 
-	 EstudianteCarrera saveEstudianteCarrera(Estudiante e,Carrera c,int antiguedad,boolean graduado);
+	 EstudianteCarrera saveEstudianteCarrera(EstudianteCarrera ec);
 	 List<EstudianteCarrera> getReport();
+	 void insertFromCsv();
 	}

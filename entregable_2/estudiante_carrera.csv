@@ -1,0 +1,6 @@
+idEstudiante,idCarrera,Graduado,Antiguedad,añoInicio
+1,3,true,4,2017
+2,3,false,3,2018
+4,4,true,5,2016
+5,1,false,2,2019
+17,2,true,5,2016

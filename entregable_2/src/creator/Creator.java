@@ -1,5 +1,13 @@
 package creator;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
 import carrera.CarreraRepositoryImpl;
 import estudiante.EstudianteRepositoryImpl;
 import estudiante_carrera.EstudianteCarreraRepositoryImpl;
@@ -18,13 +26,15 @@ public class Creator {
 		
 		em.getEm();
 		
-//		em.getEm().getTransaction().begin();
-//	
-//		em.getEm().getTransaction().commit();
-//		
-//		em.closeConnection();
+		e.insertFromCsv();
+		c.insertFromCsv();
+		ec.insertFromCsv();
+	
+		em.closeConnection();
 		
 	}
+	
+	
 	
 	
 }
