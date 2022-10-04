@@ -25,9 +25,10 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 
 	@Override
 	public List<Carrera> getAllWithStudents() {
-		String q = "SELECT Carrera c FROM carrera "
-				+ "JOIN estudiante_carrera"
-				+ "ON c.id = ec.id"
+		String q = "SELECT c "
+				+ "FROM Carrera c "
+				+ "JOIN EstudianteCarrera ec"
+				+ "ON c.idCarrera = ec.idCarrera "
 				+ "ORDER BY SUM(c) ";
 
 		List<Carrera> C = em.getEm().createQuery(q).getResultList();
@@ -39,7 +40,7 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 	public void insertFromCsv() {
 		CSVParser parser;
 		try {
-			Reader in = new FileReader("carrera.csv");
+			Reader in = new FileReader("carreras.csv");
 			parser = CSVFormat.DEFAULT.withHeader().parse(in);
 			for (CSVRecord row : parser) {
 				Carrera c = new Carrera(row.get("nombre"));

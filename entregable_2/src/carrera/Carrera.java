@@ -11,6 +11,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Carrera {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCarrera;
@@ -36,7 +37,10 @@ public class Carrera {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	@Override
+	public String toString() {
+		return "Carrera [idCarrera=" + idCarrera + ", nombre=" + nombre + "]";
+	}
 
 	
 }

@@ -15,7 +15,6 @@ import estudiante_carrera.EstudianteCarreraRepositoryImpl;
 
 public class Creator {
 
-
 	private static SingletonEM em = SingletonEM.getInstance();
 	
 	public static void main(String[] args) {
@@ -26,10 +25,20 @@ public class Creator {
 		
 		em.getEm();
 		
-		e.insertFromCsv();
-		c.insertFromCsv();
-		ec.insertFromCsv();
-	
+//		e.insertFromCsv();
+//		c.insertFromCsv();
+//		ec.insertFromCsv();
+		//2
+		//a
+		//b
+		//c
+		//d
+		//e
+		//f
+		//g
+		
+		//3
+		ec.getReport();
 		em.closeConnection();
 		
 	}

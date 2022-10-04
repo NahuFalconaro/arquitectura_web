@@ -28,7 +28,9 @@ public class EstudianteCarrera implements Serializable {
 	private int antiguedad;
 	@Column(name="añoInicio")
 	private int añoInicio;
-	
+	@Column(name="añoGraduacion")
+	private int añoGraduacion;
+
 	public EstudianteCarrera() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -40,6 +42,7 @@ public class EstudianteCarrera implements Serializable {
 		this.graduado = graduado;
 		this.antiguedad = antiguedad;
 		this.añoInicio = añoInicio;
+		this.añoGraduacion = getAnioGraduacion();
 	}
 	public Carrera getIdCarrera() {
 		return idCarrera;
@@ -65,10 +68,17 @@ public class EstudianteCarrera implements Serializable {
 	public void setAntiguedad(int antiguedad) {
 		this.antiguedad = antiguedad;
 	}
+	public int getAnioGraduacion() {
+		if(graduado){
+			return this.getAñoInicio() + this.getAntiguedad();
+		}
+		else{ 
+			return 0;
+		}
+	}
 	@Override
 	public String toString() {
-		return "EstudianteCarrera [idCarrera=" + idCarrera + ", idEstudiante=" + idEstudiante + ", graduado=" + graduado
-				+ ", antiguedad=" + antiguedad + "]";
+		return "[idCarrera=" + idCarrera.getIdCarrera() + ", idEstudiante=" + idEstudiante.getIdEstudiante() + ", graduado=" + graduado+ ", antiguedad=" + antiguedad + "]";
 	}
 	public int getAñoInicio() {
 		return añoInicio;

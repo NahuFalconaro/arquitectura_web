@@ -27,7 +27,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	@Override
 	public List<Estudiante> getOrdenadoByCriterio(String criterio) {
 		String q = "SELECT e "
-				+ "FROM estudiante e "
+				+ "FROM Estudiante e "
 				+ "ORDER BY " + criterio + " ASC";
 
 		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
@@ -38,7 +38,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	@Override
 	public Estudiante getByLibreta(int nro_libreta) {
 		String q = "SELECT e "
-				+ "FROM estudiante e "
+				+ "FROM Estudiante e "
 				+ "WHERE (e.nro_libreta = " + nro_libreta +")";
 
 		Estudiante e = (Estudiante) em.getEm().createQuery(q).getSingleResult();
@@ -50,7 +50,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	@Override
 	public List<Estudiante> getAllByGenero(String genero) {
 		String q = "SELECT e "
-				+ "FROM estudiante e "
+				+ "FROM Estudiante e "
 				+ "WHERE (e.genero = " + genero +")";
 
 		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
@@ -62,8 +62,8 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	@Override
 	public List<Estudiante> getAllByCarreraYCiudad(Carrera c,String ciudad) {
 		String q = "SELECT e "
-				+ "FROM estudiante e"
-				+ "JOIN estudiante_carrera ec "
+				+ "FROM Estudiante e"
+				+ "JOIN EstudianteCarrera ec "
 				+ "ON (ec.idCarrera = " + c.getIdCarrera() + ") "
 				+ "WHERE (e.ciudad = " + ciudad + ") ";
 
@@ -95,6 +95,31 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	public Estudiante getById(int id) {
 		Estudiante e = em.getEm().find(Estudiante.class, id);
 		return e;
+	}
+
+	@Override
+	public List<Estudiante> getAllByCarreraId(int idCarrera) {
+		String q = "SELECT e "
+				+ "FROM Estudiante e "
+				+ "JOIN EstudianteCarrera ec "
+				+ "ON (ec.idEstudiante = e.idEstudiante) "
+				+ "WHERE (ec.idCarrera = " + idCarrera + ")";
+
+		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
+		
+		return e;
+	}
+
+	@Override
+	public List<Estudiante> getAllByAnioGraduacion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Estudiante> getAllByAnioInscripcion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

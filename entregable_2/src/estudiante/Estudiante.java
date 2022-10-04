@@ -34,6 +34,17 @@ public class Estudiante {
 	@Column(name="carreras")
 	private ArrayList<Carrera> carreras;
 
+	public Estudiante() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Estudiante(String nombre, String apellido, int nro_libreta) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nro_libreta = nro_libreta;
+		// TODO Auto-generated constructor stub
+	}
 	public Estudiante(String nombre, String apellido, int edad, String genero, String dni,
 			String ciudad, int nro_libreta) {
 		super();
