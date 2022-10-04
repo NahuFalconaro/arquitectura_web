@@ -72,49 +72,49 @@ WHERE ec.idcarrera_idcarrera = 3
 		EstudianteRepositoryImpl er = new EstudianteRepositoryImpl();
 		
 		for (Carrera c : carreras) {
+
 			cronologico = new HashMap<Integer, List<Estudiante>>();
-			String estudiantesByCarreraQuery = "SELECT e.nombre, e.apellido, c.nombre, ec.graduado, ec.añoInicio, ec.añoGraduacion, ec.idCarrera "
+			String estudiantesByCarreraQuery = "SELECT NEW List( e.nombre, e.apellido,e.nro_libreta,"
+										+ "c.nombre, ec.graduado, ec.añoInicio, ec.añoGraduacion, ec.idCarrera ) "
 										+ "FROM EstudianteCarrera ec "
 										+ "JOIN Estudiante e ON ec.idEstudiante = e.idEstudiante "
 										+ "JOIN Carrera c ON ec.idCarrera = c.idCarrera "
 										+ "WHERE ec.idCarrera ="+c.getIdCarrera()+"";
 			
-
-			List<EstudianteCarreraDTO> estudiantesByCarrera = em.getEm().createQuery(estudiantesByCarreraQuery).getResultList();
-			List<EstudianteCarreraDTO> retorno =  new ArrayList<EstudianteCarreraDTO>();
-			//for (EstudianteCarreraDTO e1 : estudiantesByCarrera) {
-			for (int i = 0; i < estudiantesByCarrera.size(); i++) {
-				EstudianteCarreraDTO ecd = new EstudianteCarreraDTO();
-				ecd.setNombre(estudiantesByCarrera.get(i).getNombre());
-				ecd.setApellido(estudiantesByCarrera.get(i).getApellido());
-				ecd.setAnioGraduacion(estudiantesByCarrera.get(i).getAnioGraduacion());
-				ecd.setAnioInicio(estudiantesByCarrera.get(i).getAnioInicio());
-				ecd.setIdCarrera(estudiantesByCarrera.get(i).getIdCarrera());
-				ecd.setIsGraduado(estudiantesByCarrera.get(i).getIsGraduado());
-				ecd.setNombreCarrera(estudiantesByCarrera.get(i).getNombreCarrera());
-				ecd.setNroLibreta(estudiantesByCarrera.get(i).getNroLibreta());
-				retorno.add(ecd);
-			}	
-			System.out.println(retorno);
-			//}
+			List<List<Object>> estudiantesByCarrera = em.getEm().createQuery(estudiantesByCarreraQuery).getResultList();
+			List<EstudianteCarreraDTO> estudianteCarreraList = new ArrayList<EstudianteCarreraDTO>();
+			for (List<Object> ec : estudiantesByCarrera) {
+				EstudianteCarreraDTO ecDto = new EstudianteCarreraDTO(
+					ec.get(0).toString(),
+					ec.get(1).toString(),
+					(int) ec.get(2),
+					ec.get(3).toString(),
+					(boolean) ec.get(4),
+					(int) ec.get(5),
+					(int)ec.get(6),
+					((Carrera) ec.get(7)).getIdCarrera()
+				);
+				estudianteCarreraList.add(ecDto);
+			}
 			
-//			for (EstudianteCarreraDTO e : estudiantesByCarrera) {
-//				List<Estudiante> retorno = new ArrayList<Estudiante>();
-//				Estudiante e1 = new Estudiante(e.getNombre(), e.getApellido(), e.getNroLibreta());
-//				
-//				if(!cronologico.containsKey(e.getAnioInicio())) {
-//					cronologico.put(e.getAnioInicio(), retorno);
-//				};
-//				cronologico.get(e.getAnioInicio()).add(e1);
-//				if(!cronologico.containsKey(e.getAnioGraduacion())) {
-//					cronologico.put(e.getAnioGraduacion(), retorno);
-//				};
-//				cronologico.get(e.getAnioGraduacion()).add(e1);
-//			}
-//			reporte.put(c, cronologico);
+			
+			for (EstudianteCarreraDTO e : estudianteCarreraList) {
+				List<Estudiante> retorno = new ArrayList<Estudiante>();
+				Estudiante e1 = new Estudiante(e.getNombre(), e.getApellido(), e.getNroLibreta());
+				
+				if(!cronologico.containsKey(e.getAnioInicio())) {
+					cronologico.put(e.getAnioInicio(), retorno);
+				};
+				cronologico.get(e.getAnioInicio()).add(e1);
+				if(!cronologico.containsKey(e.getAnioGraduacion())) {
+					cronologico.put(e.getAnioGraduacion(), retorno);
+				};
+				cronologico.get(e.getAnioGraduacion()).add(e1);
+			}
+			reporte.put(c, cronologico);
 		}
-//		System.out.println(reporte);
-//		
+		System.out.println(reporte);
+		
 		return null;
 	}
 

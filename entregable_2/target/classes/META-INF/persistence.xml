@@ -8,14 +8,15 @@
 		
 		<class>entregable_2.Carrera</class>
 		<class>entregable_2.Estudiante</class>
-		<class>entregable_2.EstudianteCarrera</class>	
+		<class>entregable_2.EstudianteCarrera</class>
+		<class>entregable_2.EstudianteCarreraDTO</class>	
 		<properties>
 
 			<!-- Propiedades de configuracion de JDBC para POstgre /-->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:3306/entregable_2"/>
-			<property name="javax.persistence.jdbc.user" value="nahuelfalconaro" />
-			<property name="javax.persistence.jdbc.password" value="4174"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:49153/entregable_2"/>
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="postgrespw"/>
 			
 			<!-- Propiedad para la generacion automatica del esquema de base de datos -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />

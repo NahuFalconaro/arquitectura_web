@@ -11,10 +11,10 @@ public class EstudianteCarreraDTO {
 	private Boolean isGraduado;
 	private Integer anioInicio;
 	private Integer anioGraduacion;
-	private Carrera idCarrera;
+	private int idCarrera;
 	
 	public EstudianteCarreraDTO(String nombre, String apellido, int nro_libreta, String nombreCarrera, Boolean isGraduado, Integer anioInicio,
-			Integer anioGraduacion, Carrera idCarrera) {
+			Integer anioGraduacion, int idCarrera) {
 		super();
 		
 		this.nombre = nombre;
@@ -85,11 +85,11 @@ public class EstudianteCarreraDTO {
 		this.anioGraduacion = anioGraduacion;
 	}
 
-	public Carrera getIdCarrera() {
+	public int getIdCarrera() {
 		return idCarrera;
 	}
 
-	public void setIdCarrera(Carrera idCarrera) {
+	public void setIdCarrera(int idCarrera) {
 		this.idCarrera = idCarrera;
 	}
 
