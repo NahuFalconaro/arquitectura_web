@@ -76,9 +76,11 @@ public class EstudianteCarrera implements Serializable {
 			return 0;
 		}
 	}
+
 	@Override
 	public String toString() {
-		return "[idCarrera=" + idCarrera.getIdCarrera() + ", idEstudiante=" + idEstudiante.getIdEstudiante() + ", graduado=" + graduado+ ", antiguedad=" + antiguedad + "]";
+		return "EstudianteCarrera [idCarrera=" + idCarrera + ", idEstudiante=" + idEstudiante + ", graduado=" + graduado
+				+ ", antiguedad=" + antiguedad + ", añoInicio=" + añoInicio + ", añoGraduacion=" + añoGraduacion + "]";
 	}
 	public int getAñoInicio() {
 		return añoInicio;

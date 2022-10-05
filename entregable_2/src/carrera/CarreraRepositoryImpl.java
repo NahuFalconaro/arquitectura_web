@@ -24,13 +24,14 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 	}
 
 	@Override
-	public List<Carrera> getAllWithStudents() {
-		String q = "SELECT c "
+	public List<Carrera> getAllWithStudentsOrderByCantInscriptos() {
+		String q = "SELECT NEW List(COUNT(c) as cantidad, c.nombre) "
 				+ "FROM Carrera c "
-				+ "JOIN EstudianteCarrera ec"
+				+ "JOIN EstudianteCarrera ec "
 				+ "ON c.idCarrera = ec.idCarrera "
-				+ "ORDER BY SUM(c) ";
-
+				+ "WHERE ec.graduado = false "
+				+ "GROUP BY c.idCarrera";
+		
 		List<Carrera> C = em.getEm().createQuery(q).getResultList();
 		
 		return C;
@@ -58,6 +59,16 @@ public class CarreraRepositoryImpl implements CarreraRepository {
 	public Carrera getById(int id) {
 		Carrera c = em.getEm().find(Carrera.class, id);
 		return c;
+	}
+
+	@Override
+	public Carrera getByName(String str) {
+		String q = "SELECT c "
+				+ "FROM Carrera c "
+				+ "WHERE c.nombre = '"+str+"' ";
+		Carrera C = (Carrera) em.getEm().createQuery(q).getSingleResult();
+		
+		return C;
 	}
 
 	 

@@ -31,8 +31,6 @@ public class Estudiante {
 	private String ciudad;
 	@Column(name="nro_libreta")
 	private int nro_libreta;
-	@Column(name="carreras")
-	private ArrayList<Carrera> carreras;
 
 	public Estudiante() {
 		super();
@@ -104,12 +102,6 @@ public class Estudiante {
 	}
 	public void setNro_libreta(int nro_libreta) {
 		this.nro_libreta = nro_libreta;
-	}
-	public List<Carrera> getCarreras() {
-		return carreras;
-	}
-	public void setCarreras(ArrayList<Carrera> carreras) {
-		this.carreras = carreras;
 	}
 	@Override
 	public String toString() {

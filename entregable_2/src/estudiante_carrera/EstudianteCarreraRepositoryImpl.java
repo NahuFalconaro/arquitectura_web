@@ -91,7 +91,7 @@ public class EstudianteCarreraRepositoryImpl implements EstudianteCarreraReposit
 			reporte.put(c, cronologico);
 		}
 		TreeMap<Carrera, HashMap<Integer, List<Estudiante>>> sorted = new TreeMap<>(reporte);
-		return null;
+		return sorted;
 	}
 	@Override
 	public void insertFromCsv() {

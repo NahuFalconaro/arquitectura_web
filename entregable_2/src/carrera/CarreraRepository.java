@@ -7,7 +7,8 @@ import estudiante.Estudiante;
 public interface CarreraRepository {
 
 	 Carrera saveCarrera(Carrera c);
-	 List<Carrera> getAllWithStudents();
+	 List<Carrera> getAllWithStudentsOrderByCantInscriptos();
 	 void insertFromCsv();
 	 Carrera getById(int id);
+	 Carrera getByName(String str);
 	}

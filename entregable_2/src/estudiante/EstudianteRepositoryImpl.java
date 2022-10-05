@@ -28,7 +28,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	public List<Estudiante> getOrdenadoByCriterio(String criterio) {
 		String q = "SELECT e "
 				+ "FROM Estudiante e "
-				+ "ORDER BY " + criterio + " ASC";
+				+ "ORDER BY e." + criterio + " ASC";
 
 		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
 		
@@ -51,7 +51,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	public List<Estudiante> getAllByGenero(String genero) {
 		String q = "SELECT e "
 				+ "FROM Estudiante e "
-				+ "WHERE (e.genero = " + genero +")";
+				+ "WHERE (e.genero = '" + genero +"')";
 
 		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
 		
@@ -62,10 +62,10 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 	@Override
 	public List<Estudiante> getAllByCarreraYCiudad(Carrera c,String ciudad) {
 		String q = "SELECT e "
-				+ "FROM Estudiante e"
+				+ "FROM Estudiante e "
 				+ "JOIN EstudianteCarrera ec "
 				+ "ON (ec.idCarrera = " + c.getIdCarrera() + ") "
-				+ "WHERE (e.ciudad = " + ciudad + ") ";
+				+ "WHERE (e.ciudad = '" + ciudad + "') ";
 
 		List<Estudiante> e = em.getEm().createQuery(q).getResultList();
 		
