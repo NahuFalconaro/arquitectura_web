@@ -93,10 +93,13 @@ public class EstudianteCarreraDTO {
 		this.idCarrera = idCarrera;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "EstudianteCarreraDTO [nombre=" + nombre + ", apellido=" + apellido + ", nro_libreta=" + nro_libreta
-				+ "]";
+		return "EstudianteCarreraDTO [nombre=" + nombre + ", apellido=" + apellido + ", nombreCarrera=" + nombreCarrera
+				+ ", nro_libreta=" + nro_libreta + ", isGraduado=" + isGraduado + ", anioInicio=" + anioInicio
+				+ ", anioGraduacion=" + anioGraduacion + ", idCarrera=" + idCarrera + "]";
 	}
 
 	public EstudianteCarreraDTO() {

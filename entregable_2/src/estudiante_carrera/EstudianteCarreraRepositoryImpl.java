@@ -6,6 +6,8 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -31,36 +33,11 @@ public class EstudianteCarreraRepositoryImpl implements EstudianteCarreraReposit
 		em.getEm().getTransaction().commit();
 		return ec;
 	}
-	
-	
-	/*
-	* Generar un reporte de las carreras, que para cada carrera incluya información de los
-	inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, 
-		y presentar los años de manera cronológica.
-	 * */
-//	carrera1-anio 2010: 10 graduados 5 inscriptos
-//			 anio 2015: 11 gradudos 10 inscriptos
-//	carrera2-anio 2018: 10 graduados 5 inscriptos
-	
-	
-	//getInscriptos, groupby by anoinicio
-	//los metes al array
-	//select e, (ec.antiguedad + ec.anioinicio) as aniograduacion
-	//where graduado = true
-	//los metes al array
-/*
-SELECT e.nombre,e.apellido, c.nombre, ec.graduado, ec.añoinicio, ec.añograduacion, ec.idcarrera_idcarrera
-FROM public.estudiantecarrera ec
-JOIN public.estudiante e ON ec.idestudiante_idestudiante = e.idestudiante
-JOIN public.carrera c ON ec.idcarrera_idcarrera = c.idcarrera
-WHERE ec.idcarrera_idcarrera = 3
-
- * */
+	  
 	@Override
-	public List<EstudianteCarrera> getReport() {
+	public TreeMap<Carrera, HashMap<Integer, List<Estudiante>>> getReport() {
 		HashMap<Integer, List<Estudiante>> cronologico;
 		HashMap<Carrera, HashMap<Integer, List<Estudiante>>> reporte = new HashMap<Carrera, HashMap<Integer, List<Estudiante>>>();
-		
 		
 		String carrerasIDQuery = "SELECT c "
 								+ "FROM Carrera c "
@@ -69,7 +46,6 @@ WHERE ec.idcarrera_idcarrera = 3
 								+ "GROUP BY c.idCarrera";
 		
 		List<Carrera> carreras = (em.getEm().createQuery(carrerasIDQuery).getResultList());
-		EstudianteRepositoryImpl er = new EstudianteRepositoryImpl();
 		
 		for (Carrera c : carreras) {
 
@@ -96,28 +72,27 @@ WHERE ec.idcarrera_idcarrera = 3
 				);
 				estudianteCarreraList.add(ecDto);
 			}
-			
-			
 			for (EstudianteCarreraDTO e : estudianteCarreraList) {
-				List<Estudiante> retorno = new ArrayList<Estudiante>();
 				Estudiante e1 = new Estudiante(e.getNombre(), e.getApellido(), e.getNroLibreta());
+				List<Estudiante> retorno = new ArrayList<Estudiante>();
 				
 				if(!cronologico.containsKey(e.getAnioInicio())) {
 					cronologico.put(e.getAnioInicio(), retorno);
 				};
 				cronologico.get(e.getAnioInicio()).add(e1);
-				if(!cronologico.containsKey(e.getAnioGraduacion())) {
-					cronologico.put(e.getAnioGraduacion(), retorno);
-				};
-				cronologico.get(e.getAnioGraduacion()).add(e1);
+				retorno = new ArrayList<Estudiante>();
+				if(e.getAnioGraduacion() > 0) {
+					if(!cronologico.containsKey(e.getAnioGraduacion())) {
+						cronologico.put(e.getAnioGraduacion(), retorno);
+					};
+					cronologico.get(e.getAnioGraduacion()).add(e1);
+				}
 			}
 			reporte.put(c, cronologico);
 		}
-		System.out.println(reporte);
-		
+		TreeMap<Carrera, HashMap<Integer, List<Estudiante>>> sorted = new TreeMap<>(reporte);
 		return null;
 	}
-
 	@Override
 	public void insertFromCsv() {
 		CSVParser parser;

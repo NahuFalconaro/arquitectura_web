@@ -113,10 +113,9 @@ public class Estudiante {
 	}
 	@Override
 	public String toString() {
-		return "Estudiante [idEstudiante=" + idEstudiante + ", nombre=" + nombre + ", apellido=" + apellido + ", edad="
-				+ edad + ", genero=" + genero + ", dni=" + dni + ", ciudad=" + ciudad + ", nro_libreta=" + nro_libreta
-				+ "]";
+		return "Estudiante [nombre=" + nombre + ", apellido=" + apellido + ", nro_libreta=" + nro_libreta + "]";
 	}
+
 	
 	
 	

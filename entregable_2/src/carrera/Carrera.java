@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Carrera {
+public class Carrera implements Comparable<Carrera>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,6 +41,9 @@ public class Carrera {
 	public String toString() {
 		return "Carrera [idCarrera=" + idCarrera + ", nombre=" + nombre + "]";
 	}
-
+    @Override
+    public int compareTo(Carrera c) {
+        return this.nombre.compareTo(c.getNombre());
+    }
 	
 }

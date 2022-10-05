@@ -39,6 +39,7 @@ public class Creator {
 		
 		//3
 		ec.getReport();
+		
 		em.closeConnection();
 		
 	}
