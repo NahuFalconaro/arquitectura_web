@@ -110,18 +110,4 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 		return e;
 	}
 
-	@Override
-	public List<Estudiante> getAllByAnioGraduacion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Estudiante> getAllByAnioInscripcion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-
 }

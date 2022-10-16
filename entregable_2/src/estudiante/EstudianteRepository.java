@@ -14,6 +14,4 @@ public interface EstudianteRepository {
 	 Estudiante getById(int id);
 	 void insertFromCsv();
 	 List<Estudiante> getAllByCarreraId(int idCarrera);
-	 List<Estudiante> getAllByAnioGraduacion();
-	 List<Estudiante> getAllByAnioInscripcion();
 	}
