@@ -1,5 +1,6 @@
 package com.entregable_3.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,82 +10,50 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import com.entregable_3.model.EstudianteCarrera;
-import com.entregable_3.repository.EstudianteRepository;
+
+import com.entregable_3.model.Estudiante;
+import com.entregable_3.service.EstudianteService;
+import com.entregable_3.service.IEstudianteService;
 
 @RestController
-@RequestMapping("/estudiante")
-@Api(value = "EstudianteController", description = "REST API Person description")
 public class EstudianteController {
 
-    @Qualifier("EstudianteRepository")
     @Autowired
-    private final EstudianteRepository repository;
+    private EstudianteService service;
 
-    public EstudianteController(@Qualifier("EstudianteRepository") EstudianteRepository repository) {
-        this.repository = repository;
+    @PostMapping("/student/new")
+    public Estudiante newEstudent(@RequestBody Estudiante e) {
+        return this.service.saveEstudiante(e);
     }
-
-    @GetMapping("/")
-    public Iterable<EstudianteCarrera> getEstudiante() {
-       // return repository.findAll();
-        return null;
+    
+    @GetMapping("/students/{column}")
+    public List<Estudiante> getOrdenadoByColumna(@PathVariable String column){
+    	return this.service.getOrdenadoByColumna(column);
     }
-
-    @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
-    @GetMapping("/BySurname/{surname}")
-    public Iterable<EstudianteCarrera> getPersonsBySurname(@PathVariable String surname) {
-      //  return repository.findAllBySurname(surname);
-    	return null;
+    
+    @GetMapping("/students/{genre}")
+    public List<Estudiante> getAllByGenero(@PathVariable String genre){
+    	return this.service.getAllByGenero(genre);
     }
-
-    @GetMapping("/ByName/{name}")
-    public Iterable<EstudianteCarrera> getPersonsByName(@PathVariable String name) {
-      //  return repository.findAllByName(name);
-    	return null;
+    
+    @GetMapping("/students/{idCarrera}")
+    public List<Estudiante> getAllByCarreraId(@PathVariable Long idCarrera){
+    	return this.service.getAllByCarreraId(idCarrera);
     }
-
-    @PostMapping("/")
-    public EstudianteCarrera newPerson(@RequestBody EstudianteCarrera p) {
-        //return repository.save(p);
-        return null;
+    
+    @GetMapping("/students/{idCarrera}/{city}")
+    public List<Estudiante> getAllByCarreraYCiudad(@PathVariable Long idCarrera, @PathVariable String city){
+    	return this.service.getAllByCarreraYCiudad(idCarrera, city);
     }
-
-    @ApiOperation(value = "Get specific Person in the System ", response = EstudianteCarrera.class, tags = "getPerson")
-    @RequestMapping(value = "/getPerson/{name}")
-    public EstudianteCarrera getPerson(@PathVariable(value = "name") String name) {
-        //return repository.findAllByName(name).get(0);
-    	return null;
+    
+    @GetMapping("/students/{uid}")
+    public Estudiante getByUID(@PathVariable int uid){
+    	return this.service.getByLibreta(uid);
     }
-    @GetMapping("/{id}")
-    Optional<EstudianteCarrera> one(@PathVariable Long id) {
-        //return repository.findById(id);
-    	return null;
-    }
-
-    @PutMapping("/{id}")
-    EstudianteCarrera replacePerson(@RequestBody EstudianteCarrera newPerson, @PathVariable Long id) {
-    	return null;
-//        return repository.findById(id)
-//                .map(person -> {
-//                    person.setName(newPerson.getName());
-//                    person.setSurname(newPerson.getSurname());
-//                    return repository.save(person);
-//                })
-//                .orElseGet(() -> {
-//                    newPerson.setDni(id);
-//                    return repository.save(newPerson);
-//                });
-    }
-
-    @DeleteMapping("/{id}")
-    void deletePerson(@PathVariable Long id) {
-        //repository.deleteById(id);
+    
+    @GetMapping("/student/{id}")
+    public Estudiante getById(@PathVariable Long id){
+    	return this.service.getById(id);
     }
 }
 

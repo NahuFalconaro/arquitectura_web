@@ -56,8 +56,7 @@ public class CarreraService implements ICarreraService{
 
 	@Override
 	public Carrera getByName(String str) {
-		// TODO Auto-generated method stub
-		return null;
+		return cr.getByName(str);
 	}
 
 }

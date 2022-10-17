@@ -2,8 +2,10 @@ package com.entregable_3.service;
 
 import java.util.List;
 
-import com.entregable_3.model.Carrera;
+import org.springframework.stereotype.Service;
 
+import com.entregable_3.model.Carrera;
+@Service
 public interface ICarreraService {
 	
 	 Carrera saveCarrera(Carrera c);
