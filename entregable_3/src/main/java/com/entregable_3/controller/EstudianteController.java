@@ -13,11 +13,11 @@ import com.entregable_3.model.EstudianteCarrera;
 import com.entregable_3.repository.EstudianteRepository;
 
 @RestController
-@RequestMapping("Estudiante")
+@RequestMapping("/estudiante")
 @Api(value = "EstudianteController", description = "REST API Person description")
 public class EstudianteController {
 
-    @Qualifier("EstudianteCarreraRepository")
+    @Qualifier("EstudianteRepository")
     @Autowired
     private final EstudianteRepository repository;
 
@@ -26,7 +26,7 @@ public class EstudianteController {
     }
 
     @GetMapping("/")
-    public Iterable<EstudianteCarrera> getPersons() {
+    public Iterable<EstudianteCarrera> getEstudiante() {
        // return repository.findAll();
         return null;
     }

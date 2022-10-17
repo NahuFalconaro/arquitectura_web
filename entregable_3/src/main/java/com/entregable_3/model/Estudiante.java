@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Estudiante {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idEstudiante;
+	private Long idEstudiante;
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="apellido")
@@ -52,10 +52,10 @@ public class Estudiante {
 		this.nro_libreta = nro_libreta;
 	}
 
-	public int getIdEstudiante() {
+	public Long getIdEstudiante() {
 		return idEstudiante;
 	}
-	public void setIdEstudiante(int idEstudiante) {
+	public void setIdEstudiante(Long idEstudiante) {
 		this.idEstudiante = idEstudiante;
 	}
 	public String getNombre() {

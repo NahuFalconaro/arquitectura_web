@@ -34,20 +34,17 @@ public class EstudianteService implements IEstudianteService{
 
 	@Override
 	public Estudiante getByLibreta(int nro_libreta) {
-		// TODO Auto-generated method stub
-		return null;
+		return er.getByLibreta(nro_libreta);
 	}
 
 	@Override
 	public List<Estudiante> getAllByGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+		return er.getAllByGenero(genero);
 	}
 
 	@Override
 	public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String ciudad) {
-		// TODO Auto-generated method stub
-		return null;
+		return er.getAllByCarreraYCiudad(idCarrera, ciudad);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class Carrera implements Comparable<Carrera>{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idCarrera;
+	private Long idCarrera;
 	@Column(name="nombre")
 	private String nombre;
 	public Carrera() {
@@ -25,10 +25,10 @@ public class Carrera implements Comparable<Carrera>{
 		super();
 		this.nombre = nombre;
 	}
-	public int getIdCarrera() {
+	public Long getIdCarrera() {
 		return idCarrera;
 	}
-	public void setIdCarrera(int idCarrera) {
+	public void setIdCarrera(Long idCarrera) {
 		this.idCarrera = idCarrera;
 	}
 	public String getNombre() {
