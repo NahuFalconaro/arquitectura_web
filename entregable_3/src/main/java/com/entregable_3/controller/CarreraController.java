@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import com.entregable_3.model.Carrera;
-import com.entregable_3.repository.EstudianteCarreraRepository;
+import com.entregable_3.repository.CarreraRepository;
 
 @RestController
 @RequestMapping("persons")
@@ -20,16 +20,15 @@ public class CarreraController {
 
     @Qualifier("EstudianteCarreraRepository")
     @Autowired
-    private final EstudianteCarreraRepository repository;
+    private final CarreraRepository repository;
 
-    public CarreraController(@Qualifier("EstudianteCarreraRepository") EstudianteCarreraRepository repository) {
+    public CarreraController(@Qualifier("CarreraRepository") CarreraRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("/")
-    public Iterable<Carrera> getPersons() {
-       // return repository.findAll();
-        return null;
+    public String checkCarreraStatus() {
+        return "OK Carrera 200!";
     }
 
     @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)

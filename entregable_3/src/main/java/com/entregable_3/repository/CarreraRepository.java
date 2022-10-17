@@ -3,14 +3,25 @@ package com.entregable_3.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.entregable_3.model.Carrera;
+import com.entregable_3.model.Estudiante;
 
 public interface CarreraRepository extends JpaRepository<Carrera, Long>{
 
-	 Carrera saveCarrera(Carrera c);
+	@Query("SELECT NEW List(COUNT(c) as cantidad, c.nombre) "
+			+ "FROM Carrera c "
+			+ "JOIN EstudianteCarrera ec "
+			+ "ON c.idCarrera = ec.idCarrera "
+			+ "WHERE ec.graduado = false "
+			+ "GROUP BY c.idCarrera")
 	 List<Carrera> getAllWithStudentsOrderByCantInscriptos();
-	 void insertFromCsv();
-	 Carrera getById(int id);
-	 Carrera getByName(String str);
+	 
+	 
+	 @Query("SELECT c "
+				+ "FROM Carrera c "
+				+ "WHERE c.nombre = :str ")
+	 public Carrera getByName(String str);
+	    
 	}
