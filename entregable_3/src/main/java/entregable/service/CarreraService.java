@@ -1,4 +1,4 @@
-package com.entregable_3.service;
+package entregable.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -10,26 +10,26 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.entregable_3.model.Carrera;
-import com.entregable_3.repository.CarreraRepository;
-import com.entregable_3.repository.EstudianteRepository;
+import entregable.model.Carrera;
+import entregable.repository.CarreraRepository;
+
 
 @Service
 public class CarreraService implements ICarreraService{
 	
 	
 	@Autowired
-	private CarreraRepository cr;
+	private CarreraRepository careerRepository;
 	
 	@Override
 	public Carrera saveCarrera(Carrera c) {
-		cr.save(c);
+		careerRepository.save(c);
 		return c;
 	}
 
 	@Override
 	public List<Carrera> getAllWithStudentsOrderByCantInscriptos() {
-		return cr.getAllWithStudentsOrderByCantInscriptos();
+		return careerRepository.getAllWithStudentsOrderByCantInscriptos();
 	}
 
 	@Override
@@ -51,12 +51,12 @@ public class CarreraService implements ICarreraService{
 
 	@Override
 	public Carrera getById(Long id) {
-		return cr.findById(id).orElse(null);
+		return careerRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Carrera getByName(String str) {
-		return cr.getByName(str);
+		return careerRepository.getByName(str);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.entregable_3.service;
+package entregable.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -13,21 +13,22 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.entregable_3.model.Carrera;
-import com.entregable_3.model.Estudiante;
-import com.entregable_3.model.EstudianteCarrera;
-import com.entregable_3.model.EstudianteCarreraDTO;
-import com.entregable_3.repository.EstudianteCarreraRepository;
+import entregable.model.Carrera;
+import entregable.model.Estudiante;
+import entregable.model.EstudianteCarrera;
+import entregable.model.EstudianteCarreraDTO;
+import entregable.repository.EstudianteCarreraRepository;
+
 
 @Service
 public class EstudianteCarreraService implements IEstudianteCarreraService{
 	
 	@Autowired
-	private EstudianteCarreraRepository ecr;
+	private EstudianteCarreraRepository estudenCareerRepository;
 	
 	@Override
 	public EstudianteCarrera saveEstudianteCarrera(EstudianteCarrera ec) {
-		return ecr.save(ec);
+		return estudenCareerRepository.save(ec);
 	}
 
 	@Override
@@ -35,11 +36,11 @@ public class EstudianteCarreraService implements IEstudianteCarreraService{
 		HashMap<Integer, List<Estudiante>> cronologico;
 		HashMap<Carrera, HashMap<Integer, List<Estudiante>>> reporte = new HashMap<Carrera, HashMap<Integer, List<Estudiante>>>();
 		
-		List<Carrera> carreras = ecr.getAllGroupByCarrera();
+		List<Carrera> carreras = estudenCareerRepository.findByIdCarrera();
 		for (Carrera c : carreras) {
 
 			cronologico = new HashMap<Integer, List<Estudiante>>();
-			List<List<Object>> estudiantesByCarrera = ecr.getEstudiantesByCarreraId(c.getIdCarrera()); 
+			List<List<Object>> estudiantesByCarrera = estudenCareerRepository.findByIdEstudianteAndIdCarrera(c.getIdCarrera()); 
 			List<EstudianteCarreraDTO> estudianteCarreraList = new ArrayList<EstudianteCarreraDTO>();
 			for (List<Object> ec : estudiantesByCarrera) {
 				EstudianteCarreraDTO ecDto = new EstudianteCarreraDTO(

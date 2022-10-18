@@ -1,4 +1,4 @@
-package com.entregable_3.model;
+package entregable.model;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public class Carrera implements Comparable<Carrera>{
 	private Long idCarrera;
 	@Column(name="nombre")
 	private String nombre;
+	
 	public Carrera() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,4 +1,4 @@
-package com.entregable_3.model;
+package entregable.model;
 
 import java.util.ArrayList;
 import java.util.List;

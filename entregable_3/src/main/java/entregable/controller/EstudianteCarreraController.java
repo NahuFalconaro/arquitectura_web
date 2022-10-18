@@ -1,4 +1,4 @@
-package com.entregable_3.controller;
+package entregable .controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,28 +7,31 @@ import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+
+import entregable.model.EstudianteCarrera;
+
 import io.swagger.annotations.Api;
 
-import com.entregable_3.model.Carrera;
-import com.entregable_3.model.Estudiante;
-import com.entregable_3.model.EstudianteCarrera;
-import com.entregable_3.service.EstudianteCarreraService;
-import com.entregable_3.service.IEstudianteCarreraService;
+import entregable.model.Carrera;
+import entregable.model.Estudiante;
+import entregable.service.EstudianteCarreraService;
+import entregable.service.IEstudianteCarreraService;
 
 @RestController
+@RequestMapping("/EstudianteCarrera")
 public class EstudianteCarreraController {
 
     @Autowired
-    private EstudianteCarreraService ecs;
+    private IEstudianteCarreraService service;
 
     @PostMapping("/studentcarrer/new")
     public EstudianteCarrera newCareer(@RequestBody EstudianteCarrera ec) {
-        return this.ecs.saveEstudianteCarrera(ec);
+        return service.saveEstudianteCarrera(ec);
     }
     
     @GetMapping("/studentcarrer/report")
     TreeMap<Carrera, HashMap<Integer, List<Estudiante>>> getReport() {
-    	return this.ecs.getReport();
+    	return service.getReport();
     }
 }
 

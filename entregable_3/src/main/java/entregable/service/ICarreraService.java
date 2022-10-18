@@ -1,10 +1,10 @@
-package com.entregable_3.service;
+package entregable.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.entregable_3.model.Carrera;
+import entregable.model.Carrera;
 @Service
 public interface ICarreraService {
 	

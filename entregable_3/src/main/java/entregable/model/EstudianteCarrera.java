@@ -1,9 +1,11 @@
-package com.entregable_3.model;
+package entregable.model;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -11,10 +13,13 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class EstudianteCarrera implements Serializable {
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idEstudianteCarrera;
+	
 	@ManyToOne
 	private Carrera idCarrera;
-	@Id
 	@ManyToOne
 	private Estudiante idEstudiante;
 	@Column(name="graduado")
@@ -83,9 +88,13 @@ public class EstudianteCarrera implements Serializable {
 	public void setAñoInicio(int añoInicio) {
 		this.añoInicio = añoInicio;
 	}
+	public int getAñoGraduacion() {
+		return añoGraduacion;
+	}
+	public void setAñoGraduacion(int añoGraduacion) {
+		this.añoGraduacion = añoGraduacion;
+	}
 	
-	
-
 
 	
 }

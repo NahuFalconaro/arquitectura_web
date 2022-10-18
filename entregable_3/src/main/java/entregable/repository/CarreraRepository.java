@@ -1,4 +1,4 @@
-package com.entregable_3.repository;
+package entregable.repository;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.entregable_3.model.Carrera;
-import com.entregable_3.model.Estudiante;
+import entregable.model.Carrera;
+
+
 
 @Repository
 public interface CarreraRepository extends JpaRepository<Carrera, Long>{

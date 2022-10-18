@@ -1,4 +1,4 @@
-package com.entregable_3.controller;
+package entregable.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,17 +6,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+
+import entregable.model.Carrera;
+
+import entregable.service.ICarreraService;
+
 import io.swagger.annotations.Api;
 
-import com.entregable_3.model.Carrera;
-import com.entregable_3.service.CarreraService;
-import com.entregable_3.service.ICarreraService;
 
 @RestController
 public class CarreraController {
 
     @Autowired
-    private CarreraService cs;
+    private ICarreraService service;
 
     @GetMapping("/")
     public String checkCarreraStatus() {
@@ -25,22 +27,22 @@ public class CarreraController {
 
     @GetMapping("/career/{id}")
     public Carrera getCareerById(@PathVariable Long id) {
-    	return this.cs.getById(id);
+    	return service.getById(id);
     }
 
     @GetMapping("/career/{name}")
     public Carrera getCareerByName(@PathVariable String name) {
-    	return this.cs.getByName(name);
+    	return service.getByName(name);
     }
 
     @PostMapping("/career/new")
     public Carrera newCareer(@RequestBody Carrera c) {
-        return this.cs.saveCarrera(c);
+        return service.saveCarrera(c);
     }
 
     @GetMapping("/career")
     List<Carrera> getAllWithStudentsOrderByCantInscriptos() {
-    	return this.cs.getAllWithStudentsOrderByCantInscriptos();
+    	return service.getAllWithStudentsOrderByCantInscriptos();
     }
 
 

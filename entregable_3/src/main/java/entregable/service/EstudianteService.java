@@ -1,4 +1,4 @@
-package com.entregable_3.service;
+package entregable.service;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,8 +12,10 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.entregable_3.model.Estudiante;
-import com.entregable_3.repository.EstudianteRepository;
+import entregable.model.Carrera;
+import entregable.model.Estudiante;
+import entregable.model.EstudianteCarrera;
+import entregable.repository.EstudianteRepository;
 
 @Service
 public class EstudianteService implements IEstudianteService{
