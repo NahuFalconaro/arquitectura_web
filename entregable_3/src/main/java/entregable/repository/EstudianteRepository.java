@@ -36,11 +36,13 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long>{
 			+ "WHERE (e.genero = :genero)")
     public List<Estudiante> getAllByGenero(String genero);
     
-    @Query(value = "SELECT * "
+    @Query(value = "SELECT e "
 			+ "FROM Estudiante e "
 			+ "JOIN EstudianteCarrera ec "
-			+ "ON (ec.idCarrera = :idCarrera) "
-			+ "WHERE (e.ciudad = :city)", nativeQuery = true)
+			+ "ON (ec.idEstudiante = e.idEstudiante ) "
+			+ "JOIN Carrera c "
+			+ "ON (c.idCarrera = :idCarrera) "
+			+ "WHERE (e.ciudad = :city) ")
      public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String city);
     
 }

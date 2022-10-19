@@ -21,11 +21,11 @@ public interface EstudianteCarreraRepository extends JpaRepository<EstudianteCar
 			+ "GROUP BY c.idCarrera")
     public List<Carrera> findByIdCarrera();
     
-    @Query("SELECT NEW List( e.nombre, e.apellido,e.nro_libreta,"
+    @Query("SELECT NEW List(e.nombre, e.apellido,e.nro_libreta, "
 			+ "c.nombre, ec.graduado, ec.añoInicio, ec.añoGraduacion, ec.idCarrera ) "
 			+ "FROM EstudianteCarrera ec "
-			+ "JOIN Estudiante e ON ec.idEstudiante = e.idEstudiante "
-			+ "JOIN Carrera c ON ec.idCarrera = c.idCarrera "
-			+ "WHERE ec.idCarrera =:idCarrera")
+			+ "JOIN Estudiante e ON (ec.idEstudiante = e.idEstudiante) "
+			+ "JOIN Carrera c ON (ec.idCarrera = c.idCarrera) "
+			+ "WHERE (c.idCarrera = :idCarrera)")
     public List<List<Object>> findByIdEstudianteAndIdCarrera(Long idCarrera);
 }

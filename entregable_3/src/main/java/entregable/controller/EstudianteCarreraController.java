@@ -17,7 +17,6 @@ import entregable.service.EstudianteCarreraService;
 import entregable.service.IEstudianteCarreraService;
 
 @RestController
-@RequestMapping("/EstudianteCarrera")
 public class EstudianteCarreraController {
 
     @Autowired
