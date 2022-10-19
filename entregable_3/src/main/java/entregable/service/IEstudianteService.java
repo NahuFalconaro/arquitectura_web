@@ -13,7 +13,7 @@ public interface IEstudianteService {
 
 
 	 Estudiante saveEstudiante(Estudiante e);
-	 List<Estudiante> getOrdenadoByColumna(String criterio);
+	 List<Estudiante> getOrdenadoByNombre();
 	 List<Estudiante> getAllByGenero(String genero);
 	 List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String ciudad);
 	 Estudiante getByLibreta(int nro_libreta);

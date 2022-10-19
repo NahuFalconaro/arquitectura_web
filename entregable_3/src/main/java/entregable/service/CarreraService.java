@@ -10,6 +10,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import entregable.model.CareerWithInscripts;
 import entregable.model.Carrera;
 import entregable.repository.CarreraRepository;
 
@@ -28,8 +29,8 @@ public class CarreraService implements ICarreraService{
 	}
 
 	@Override
-	public List<Carrera> getAllWithStudentsOrderByCantInscriptos() {
-		return careerRepository.getAllWithStudentsOrderByCantInscriptos();
+	public List<CareerWithInscripts> getAllWithStudentsOrderByCantInscriptos() {
+		return (List<CareerWithInscripts>) careerRepository.getAllWithStudentsOrderByCantInscriptos();
 	}
 
 	@Override

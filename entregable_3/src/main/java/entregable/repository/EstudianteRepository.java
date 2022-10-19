@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import entregable.model.Estudiante;
 
@@ -21,8 +22,8 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long>{
     
     @Query("SELECT e "
 			+ "FROM Estudiante e "
-			+ "ORDER BY :columna ASC")
-    public List<Estudiante> getOrdenadoByColumna(String columna);
+			+ "ORDER BY nombre ASC")
+    public List<Estudiante> getOrdenadoByNombre();
     
     @Query("SELECT e "
 			+ "FROM Estudiante e "
@@ -38,7 +39,7 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long>{
 			+ "FROM Estudiante e "
 			+ "JOIN EstudianteCarrera ec "
 			+ "ON (ec.idCarrera = :idCarrera) "
-			+ "WHERE (e.ciudad = :ciudad') ")
+			+ "WHERE (e.ciudad = :ciudad)")
      public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String ciudad);
     
 }

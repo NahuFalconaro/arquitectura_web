@@ -10,12 +10,14 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import entregable.model.Carrera;
 import entregable.model.Estudiante;
 import entregable.model.EstudianteCarrera;
 import entregable.repository.EstudianteRepository;
+
 
 @Service
 public class EstudianteService implements IEstudianteService{
@@ -30,8 +32,8 @@ public class EstudianteService implements IEstudianteService{
 	}
 
 	@Override
-	public List<Estudiante> getOrdenadoByColumna(String criterio) {
-		return er.getOrdenadoByColumna(criterio);
+	public List<Estudiante> getOrdenadoByNombre() {
+		return er.getOrdenadoByNombre();
 	}
 
 	@Override

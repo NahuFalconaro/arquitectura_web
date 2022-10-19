@@ -5,32 +5,28 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import entregable.model.CareerWithInscripts;
 import entregable.model.Carrera;
-
+import entregable.service.CarreraService;
 import entregable.service.ICarreraService;
 
-import io.swagger.annotations.Api;
 
 
 @RestController
 public class CarreraController {
 
     @Autowired
-    private ICarreraService service;
-
-    @GetMapping("/")
-    public String checkCarreraStatus() {
-        return "OK Carrera 200!";
-    }
+    private CarreraService service;
 
     @GetMapping("/career/{id}")
     public Carrera getCareerById(@PathVariable Long id) {
     	return service.getById(id);
     }
 
-    @GetMapping("/career/{name}")
+    @GetMapping("/career/search/{name}")
     public Carrera getCareerByName(@PathVariable String name) {
     	return service.getByName(name);
     }
@@ -41,7 +37,7 @@ public class CarreraController {
     }
 
     @GetMapping("/career")
-    List<Carrera> getAllWithStudentsOrderByCantInscriptos() {
+    List<CareerWithInscripts> getAllWithStudentsOrderByCantInscriptos() {
     	return service.getAllWithStudentsOrderByCantInscriptos();
     }
 

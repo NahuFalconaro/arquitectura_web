@@ -26,6 +26,12 @@ public class EstudianteCarreraService implements IEstudianteCarreraService{
 	@Autowired
 	private EstudianteCarreraRepository estudenCareerRepository;
 	
+	@Autowired
+	private EstudianteService es;
+	
+	@Autowired
+	private CarreraService cs;
+	
 	@Override
 	public EstudianteCarrera saveEstudianteCarrera(EstudianteCarrera ec) {
 		return estudenCareerRepository.save(ec);
@@ -85,11 +91,9 @@ public class EstudianteCarreraService implements IEstudianteCarreraService{
 			parser = CSVFormat.DEFAULT.withHeader().parse(in);
 			for (CSVRecord row : parser) {
 				
-				EstudianteService er = new EstudianteService();
-				Estudiante e1 = er.getById(Long.parseLong(row.get("idEstudiante")));
+				Estudiante e1 = this.es.getById(Long.parseLong(row.get("idEstudiante")));
 				
-				CarreraService cr = new CarreraService();
-				Carrera c1 = cr.getById(Long.parseLong(row.get("idCarrera")));
+				Carrera c1 = this.cs.getById(Long.parseLong(row.get("idCarrera")));
 				
 				EstudianteCarrera ec = new EstudianteCarrera(c1, e1,
 						Boolean.parseBoolean(row.get("graduado")), Integer.parseInt(row.get("antiguedad")),

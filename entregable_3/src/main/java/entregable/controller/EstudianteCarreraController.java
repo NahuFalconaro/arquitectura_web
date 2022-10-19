@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import entregable.model.EstudianteCarrera;
 
-import io.swagger.annotations.Api;
 
 import entregable.model.Carrera;
 import entregable.model.Estudiante;
@@ -22,7 +21,7 @@ import entregable.service.IEstudianteCarreraService;
 public class EstudianteCarreraController {
 
     @Autowired
-    private IEstudianteCarreraService service;
+    private EstudianteCarreraService service;
 
     @PostMapping("/studentcarrer/new")
     public EstudianteCarrera newCareer(@RequestBody EstudianteCarrera ec) {
