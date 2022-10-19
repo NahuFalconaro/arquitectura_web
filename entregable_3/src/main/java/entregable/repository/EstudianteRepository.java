@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -35,11 +36,11 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long>{
 			+ "WHERE (e.genero = :genero)")
     public List<Estudiante> getAllByGenero(String genero);
     
-    @Query("SELECT e "
+    @Query(value = "SELECT * "
 			+ "FROM Estudiante e "
 			+ "JOIN EstudianteCarrera ec "
 			+ "ON (ec.idCarrera = :idCarrera) "
-			+ "WHERE (e.ciudad = :ciudad)")
-     public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String ciudad);
+			+ "WHERE (e.ciudad = :city)", nativeQuery = true)
+     public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String city);
     
 }

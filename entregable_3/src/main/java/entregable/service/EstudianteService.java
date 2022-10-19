@@ -24,7 +24,10 @@ public class EstudianteService implements IEstudianteService{
 
 	@Autowired
 	private EstudianteRepository er;
-
+	
+	@Autowired
+	private CarreraService cs;
+	
 	@Override
 	public Estudiante saveEstudiante(Estudiante e) {
 		er.save(e);
@@ -47,8 +50,8 @@ public class EstudianteService implements IEstudianteService{
 	}
 
 	@Override
-	public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String ciudad) {
-		return er.getAllByCarreraYCiudad(idCarrera, ciudad);
+	public List<Estudiante> getAllByCarreraYCiudad(Long idCarrera, String city) {
+		return er.getAllByCarreraYCiudad(idCarrera, city);
 	}
 
 	@Override
